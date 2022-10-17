@@ -42,7 +42,7 @@ public class App
         		break;
         }
         
-        System.out.println("Thank You.. Do you wish to continue (Y/N): ");
+        System.out.print("Thank You. Do you wish to continue (Y/N): ");
         exit = ui.continueMenu();
         if(exit == 'N')
         	System.exit(0);

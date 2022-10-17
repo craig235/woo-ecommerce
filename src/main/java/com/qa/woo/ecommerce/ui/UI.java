@@ -11,15 +11,15 @@ import com.qa.woo.ecommerce.model.Product;
 public class UI {
 
 	public int mainMenu() {
-		System.out.println(" ---------------------------------");
-		System.out.println(" :::: Welcome to WOO Commerce ::::");
-		System.out.println(" ---------------------------------");
+		System.out.println(" ----------------------------------");
+		System.out.println(" :::: Welcome to WOO eCommerce ::::");
+		System.out.println(" ----------------------------------");
 		System.out.println("1. View Product By Id");
 		System.out.println("2. View All Products");
 		System.out.println("3. Add New Product");
 		System.out.println("4. Update Product");
 		System.out.println("5. Delete Product");
-		System.out.println("Please Enter Your Choice : (1-5)");
+		System.out.print("Please enter your choice (1-5): ");
 		int choice = 0;
 
 		try {
@@ -43,7 +43,7 @@ public class UI {
 
 	public int productIdInput() {
 		System.out.println(" ---------------------------------");
-		System.out.println(" Enter Product Id");
+		System.out.print(" Enter Product Id: ");
 		int productId = 0;
 		try  {
 			Scanner scanner = ScannerUtil.getScanner();
@@ -93,7 +93,7 @@ public class UI {
 
 	public void displayProducts(List<Product> productsList) {
 		if(productsList.size() == 0)
-			System.out.println("No Products Found ...");
+			System.out.println("No Products found...");
 		else {
 			System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
 			System.out.printf("%-8s %-25s %-10s %-10s %-10s %-10s %-15s %-15s %-20s %-15s \n", "ID", "PRODUCT", "PRICE",
@@ -105,7 +105,6 @@ public class UI {
 						product.getName(), product.getPrice(), product.getRating(), product.getCategory(), product.isInStock(),
 						product.getDiscountPercentage(), product.getDeliveryMode(), product.isReturnAccepted(),
 						product.getSellerName());
-
 			}
 		}
 	}
@@ -120,42 +119,39 @@ public class UI {
 			 * Should write the validation logic for each input
 			 */
 			Scanner scanner = ScannerUtil.getScanner();
-			System.out.println("Enter Id :");
+			System.out.print("Enter Id: ");
 			int id = scanner.nextInt();
-			System.out.println("Enter Name :");
-			String name = scanner.nextLine();
-			System.out.println("Enter Price:");
+			System.out.print("Enter Name: ");
+			String name = scanner.next();
+			System.out.print("Enter Price: ");
 			double price = scanner.nextDouble();
-			System.out.println("Enter Rating");
+			System.out.print("Enter Rating: ");
 			float rating = scanner.nextFloat();
-			System.out.println("Enter Category");
+			System.out.print("Enter Category: ");
 			String category = scanner.next();
-			System.out.println("Enter Stock Available: (Y/N)");
-			boolean inStock = DataUtil.convertToBoolean(scanner.nextLine());
-			System.out.println("Enter Discount Percentage:");
+			System.out.print("Enter Stock Available (Y/N): ");
+			boolean inStock = DataUtil.convertToBoolean(scanner.next());
+			System.out.print("Enter Discount Percentage: ");
 			float discountPercentage = scanner.nextFloat();
-			System.out.println("Enter Delivery Mode (FREE/PAID):");
-			DeliveryMode deliveryMode = Enum.valueOf(DeliveryMode.class, scanner.nextLine().toUpperCase());
-			System.out.println("Enter Returns Accepted: (Y/N)");
-			boolean isReturnAccepted = DataUtil.convertToBoolean(scanner.nextLine());
-			System.out.println("Enter Seller Name : ");
-			String sellerName = scanner.nextLine();
+			System.out.print("Enter Delivery Mode (FREE/PAID): ");
+			DeliveryMode deliveryMode = Enum.valueOf(DeliveryMode.class, scanner.next().toUpperCase());
+			System.out.print("Enter Returns Accepted (Y/N): ");
+			boolean isReturnAccepted = DataUtil.convertToBoolean(scanner.next());
+			System.out.print("Enter Seller Name: ");
+			String sellerName = scanner.next();
 			
 			product = Product.builder().id(id).name(name).price(price)
 					.rating(rating).category(category)
 					.inStock(inStock).discountPercentage(discountPercentage)
 					.deliveryMode(deliveryMode)
-
 					.isReturnAccepted(isReturnAccepted).sellerName(sellerName)
 					.build();
-
-			
 		} catch (InputMismatchException e) {
 			e.printStackTrace();
-			System.out.println("Please enter only number ");
+			System.out.println("Please only enter a number.");
 			productIdInput();
 		} catch (Exception e) {
-			System.out.println("Some internal error occurred . Please try again !!");
+			System.out.println("Some internal error occurred. Please try again !!");
 			e.printStackTrace();
 			productIdInput();
 		}

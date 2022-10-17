@@ -9,6 +9,4 @@ public class ScannerUtil {
 	public static Scanner getScanner() {
 		return scanner;
 	}
-	
-
 }

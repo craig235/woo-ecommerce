@@ -30,7 +30,6 @@ public class ProductController {
 
     public List<Product> getAllProducts() {
         return this.productService.getAllProducts();
-
     }
 
     public Product addProduct(Product product) {
