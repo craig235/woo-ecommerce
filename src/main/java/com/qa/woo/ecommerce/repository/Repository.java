@@ -25,7 +25,7 @@ public class Repository {
 			 * DriverManager
 			 */
 			try {
-				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/product_db", "root", "root");
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/product_db", "root", "mysql");
 			} catch (SQLException e) {
 				System.out.println("Invalid database credentials");
 				e.printStackTrace();
@@ -60,7 +60,7 @@ public class Repository {
 				addedProduct = product;
 
 		} catch (SQLException e) {
-			System.out.println("Some internal error occured .. Please try again !!");
+			System.out.println("Some internal error occurred .. Please try again !!");
 		}
 		return addedProduct;
 	}
@@ -73,17 +73,15 @@ public class Repository {
 			pstmt.setInt(1, id);
 
 			ResultSet rs = pstmt.executeQuery();
-			if (rs.next())
+			if (rs.next()) {
 				product = Product.builder().id(rs.getInt("id")).name(rs.getString("name")).price(rs.getDouble("price"))
 						.rating(rs.getFloat("rating")).category(rs.getString("category"))
 						.inStock(rs.getBoolean("in_stock")).discountPercentage(rs.getFloat("discount_percentage"))
-						.deliveryMode(DeliveryMode.valueOf(rs.getString("deliverymode")))
-
+						.deliveryMode(DeliveryMode.valueOf(rs.getString("delivery_mode")))
 						.isReturnAccepted(rs.getBoolean("is_return_accepted")).sellerName(rs.getString("seller_name"))
 						.build();
-
+			}
 		} catch (SQLException e) {
-
 			System.out.println("Some internal error occured .. Please try again !!");
 		}
 		return product;
@@ -100,15 +98,13 @@ public class Repository {
 				Product product = Product.builder().id(rs.getInt("id")).name(rs.getString("name"))
 						.price(rs.getDouble("price")).rating(rs.getFloat("rating")).category(rs.getString("category"))
 						.inStock(rs.getBoolean("in_stock")).discountPercentage(rs.getFloat("discount_percentage"))
-						.deliveryMode(DeliveryMode.valueOf(rs.getString("deliverymode")))
-
+						.deliveryMode(DeliveryMode.valueOf(rs.getString("delivery_mode")))
 						.isReturnAccepted(rs.getBoolean("is_return_accepted")).sellerName(rs.getString("seller_name"))
 						.build();
 				productsList.add(product);
 			}
 		} catch (SQLException e) {
-
-			System.out.println("Some internal error occured .. Please try again !!");
+			System.out.println("Some internal error occurred .. Please try again !!");
 		}
 		return productsList;
 	}
@@ -116,8 +112,8 @@ public class Repository {
 	public Product updateProduct(Product product) {
 		Product updatedProduct = null;
 		try (Connection con = getDbConnection()) {
-			String insertProductQuery = "update product_details set name = ? , price = ?,"
-					+ "rating = ? , category = ?, in_stock = ?, discount_percentage = ?, deliverymode = ? ,"
+			String insertProductQuery = "update product_details set name = ?, price = ?,"
+					+ "rating = ?, category = ?, in_stock = ?, discount_percentage = ?, delivery_mode = ?,"
 					+ "is_return_accepted=?, seller_name = ? where id = ?";
 			PreparedStatement pstmt = con.prepareStatement(insertProductQuery);
 			pstmt.setInt(10, product.getId());
@@ -136,13 +132,8 @@ public class Repository {
 				updatedProduct = product;
 
 		} catch (SQLException e) {
-			System.out.println("Some internal error occured .. Please try again !!");
+			System.out.println("Some internal error occurred .. Please try again !!");
 		}
 		return updatedProduct;
 	}
-
-	
-	
-	
-
 }

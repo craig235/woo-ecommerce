@@ -23,9 +23,4 @@ public class Product {
 	private DeliveryMode deliveryMode;
 	private boolean isReturnAccepted;
 	private String sellerName;
-	
-	
-	
-	
-
 }
