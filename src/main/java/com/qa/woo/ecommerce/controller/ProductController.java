@@ -28,6 +28,18 @@ public class ProductController {
         return product;
     }
 
+    public Product deleteProductById(int id) {
+        Product product = null;
+        try {
+            product = this.productService.deleteProductById(id);
+        } catch (ProductNotFoundException e) {
+            System.out.println(e.getMessage());
+        } catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
+        }
+        return product;
+    }
+
     public List<Product> getAllProducts() {
         return this.productService.getAllProducts();
     }

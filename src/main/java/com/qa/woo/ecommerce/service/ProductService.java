@@ -13,4 +13,5 @@ public interface ProductService {
 	Product getProductById(int id) throws ProductNotFoundException, InvalidInputException;
 	List<Product> getAllProducts();
 	Product updateProduct(Product product) throws ProductNotFoundException;
+	Product deleteProductById(int id) throws ProductNotFoundException, InvalidInputException;
 }

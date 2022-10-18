@@ -1,3 +1,8 @@
 use product_db
-insert into product_details (id,name,price,rating,category,in_stock,discount_percentage,delivery_mode,is_return_accepted,seller_name) values (1,'Apple',0.50,5.0,'Fruit','1',.10,'PAID','0','Tesco')
-insert into product_details (id,name,price,rating,category,in_stock,discount_percentage,delivery_mode,is_return_accepted,seller_name) values (2,'Carrot',0.25,6.0,'Vegetable','1',.15,'PAID','0','Tesco')
+go
+insert into product_details
+(id,name,price,rating,category,in_stock,discount_percentage,delivery_mode,is_return_accepted,seller_name)
+values
+(1,'Apple',0.50,5.0,'Fruit','1',.10,'PAID','0','Tesco'),
+(2,'Carrot',0.25,6.0,'Vegetable','1',.15,'PAID','0','Tesco');
+go
